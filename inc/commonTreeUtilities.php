@@ -1,4 +1,6 @@
 <?php
+	session_start();
+
 	function checkActionAllow($tempScriptAction)
 	{
 		$tempAllowAccess=  false;
@@ -7,6 +9,9 @@
 			
 			$tempMemberLoginName = filter_var($_COOKIE['memberLoginNameCookie'], FILTER_VALIDATE_EMAIL);
 			$tempMemberToken = filter_var($_COOKIE['memberTokenCookie'], FILTER_SANITIZE_STRING);
+			
+			//echo $tempMemberLoginName . "\n";
+			//echo $tempMemberToken;
 			
 			if($tempMemberLoginName && $tempMemberToken)
 			{

@@ -2,6 +2,11 @@
 	Commontree Inc.
 */
 
+function registerNewMember()
+{
+	document.location = "./registerNewMember.php";
+}
+
 function setUpAddNewMemberForm()
 {
 	$("#memberDateAdded").datepicker(
@@ -26,7 +31,6 @@ function setUpAddNewMemberForm()
 		}
 	);
 }
-
 
 
 /*

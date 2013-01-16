@@ -1,7 +1,8 @@
 <?php
 	date_default_timezone_set('America/New_York');
 	
-	$companyName = "Company";
+	$titleBarCompanyName = "";
+	$footerCompanyName = "";
 
 	$dbLocation = "";
 	$dbName = "";

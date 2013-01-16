@@ -133,11 +133,22 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>Company</title>
+
+		<title><?php echo $titleBarCompanyName; ?></title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
 		<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="./css/styles.css" rel="stylesheet" media="screen">
-		<script src="js/script.js"></script>
+		
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="./js/bootstrap.js"></script>
+		<script src="./js/script.js"></script>
+
+		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 	</head>
 	<body>
 		<?php include_once("./inc/menuBarGuest.php"); ?>
@@ -152,15 +163,13 @@
 						<label class="checkbox memberRemember" for="memberRemember">
 							<input type="checkbox" id="memberRemember" name="memberRemember" checked> Remember?
 						</label>
-						<button type="submit" class="btn">Login</button>
+						<button type="submit" class="btn">Login</button> <button type="button" class="btn" onClick="return registerNewMember();">Register</button>
 					</form>
 				</div>
 			</div>
 			<?php include_once("./inc/footer_01.php"); ?>
 		</div>
 	
-		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		<script src="./js/bootstrap.js"></script>
 	</body>
 </html>
 

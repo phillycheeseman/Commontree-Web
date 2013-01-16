@@ -78,14 +78,19 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+
 		<title>Change Password</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
 		<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
-
 		<link href="./css/styles.css" rel="stylesheet" media="screen">
-
-		<script src="js/script.js"></script>
+		
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="./js/bootstrap.js"></script>
+		<script src="./js/script.js"></script>
 	</head>
 	<body>
 		<?php include_once("./inc/menuBarMember.php"); ?>
@@ -141,8 +146,6 @@
 			<?php include_once("./inc/footer_01.php"); ?>
 		</div>
 	
-		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		<script src="./js/bootstrap.js"></script>
 	</body>
 </html>
 

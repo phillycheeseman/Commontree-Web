@@ -50,21 +50,6 @@
 	
 	
 	// *******************************************************************************************************
-	// Test scriptAction vs. memberAllowed
-	//
-		$scriptAction = 6;
-		$memberAllowed = checkActionAllow($scriptAction);
-		
-		if(!$memberAllowed)
-		{
-			header("Location: ./index.php"); 
-			exit();
-		}
-	//
-	// *******************************************************************************************************
-
-	
-	// *******************************************************************************************************
 	// Get memberLoginName from the memberLoginNameCookie
 	//
 		$memberLoginName = filter_var($_COOKIE['memberLoginNameCookie'], FILTER_VALIDATE_EMAIL);
@@ -169,7 +154,7 @@
 	<head>
 		<meta charset="utf-8" />
 
-		<title>Add A New Member</title>
+		<title>Register A New Member</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 
@@ -181,17 +166,14 @@
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="./js/bootstrap.js"></script>
 		<script src="./js/script.js"></script>
-
-		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 	</head>
 	<body>
-		<?php include_once("./inc/menuBarMember.php"); ?>
-		<script>setActiveMenuItem("addNewMemberMenuItem");</script>
+		<?php include_once("./inc/menuBarGuest.php"); ?>
+		<script>setActiveMenuItem("loginMenuItem")</script>
 
 		<div class="container">
 			<div class="hero-unit">
-				<h2>Add New Member</h2>
+				<h2>Registration</h2>
 			</div>
 			<div class="row">
 				<div class="span12">
@@ -239,7 +221,12 @@
 							}
 						}
 					?>
-					<form class="form-horizontal" id="addNewMemberForm" name="addNewMemberForm" method="post" action="./addNewMemberForm.php">
+					<form class="form-horizontal" id="registerNewMember" name="registerNewMember" method="post" action="./registerNewMember.php">
+						<input type="hidden" id="memberDateAdded" name="memberDateAdded" value="<?php echo date("m/d/Y"); ?>" />
+						<input type="hidden" id="memberExpiryDate" name="memberExpiryDate" value="12/31/2013" />
+						<input type="hidden" id="memberLoginTypeID" name="memberLoginTypeID" value="4" />
+						<input type="hidden" id="memberEmployeeID" name="memberEmployeeID" value="" />
+						<input type="hidden" id="updateMember" name="updateMember" value="true" />
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="memberLoginName">Login Name:</label>
@@ -260,65 +247,6 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="memberDateAdded">Date Added:</label>
-								<div class="controls">
-									<input type="text" id="memberDateAdded" name="memberDateAdded" value="<?php echo date("m/d/Y"); ?>">
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="memberExpiryDate">Date Expiry:</label>
-								<div class="controls">
-									<input type="text" id="memberExpiryDate" name="memberExpiryDate" value="<?php echo date("m/d/Y", mktime(0,0,0,date("12"),date("31"),date("2012"))); ?>">
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="memberLoginTypeID">Member Type:</label>
-								<div class="controls">
-									<select name="memberLoginTypeID" id="memberLoginTypeID">
-										<?php
-											$memberLoginTypeID = checkMemberCookie();
-											
-											$scriptAction = 7;
-											$memberAllowedToCreateCTAdmin = checkActionAllow($scriptAction);
-											
-											$mySQLQuery = mysql_query("SELECT * FROM loginType ORDER BY loginTypeID")or die(mysql_error());
-											
-											while ($mySQLQueryResultsArray = mysql_fetch_array($mySQLQuery, MYSQL_BOTH))
-											{
-												if($mySQLQueryResultsArray['loginTypeID'] == 1)
-												{
-													if($memberAllowedToCreateCTAdmin)
-													{
-														$newMemberLoginTypeCheckBox = " selected='selected'";
-														
-														echo "<option value='" . $mySQLQueryResultsArray['loginTypeID'] . "'" . $newMemberLoginTypeCheckBox . ">" . $mySQLQueryResultsArray['loginTypeName'] . "</option>\n";
-													}
-												}
-												else
-												{
-													if($mySQLQueryResultsArray['loginTypeID'] == $memberLoginTypeID)
-													{
-														$newMemberLoginTypeCheckBox = " selected='selected'";
-													}
-													else
-													{
-														$newMemberLoginTypeCheckBox = "";
-													}
-													
-													echo "<option value='" . $mySQLQueryResultsArray['loginTypeID'] . "'" . $newMemberLoginTypeCheckBox . ">" . $mySQLQueryResultsArray['loginTypeName'] . "</option>\n";
-												}
-											}
-										?>
-									</select>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="memberEmployeeID">Member #:</label>
-								<div class="controls">
-									<input type="text" class="input-xlarge" id="memberEmployeeID"  name="memberEmployeeID">
-								</div>
-							</div>
-							<div class="control-group">
 								<label class="control-label" for="memberDescription">Description:</label>
 								<div class="controls">
 									<input type="text" class="input-xlarge" id="memberDescription"  name="memberDescription">
@@ -328,18 +256,12 @@
 								<button type="submit" class="btn btn-primary">Go</button>
 							</div>
 						</fieldset>
-						<input type="hidden" id="updateMember" name="updateMember" value="true" />
 					</form>
 				</div>
 			</div>
 			<?php include_once("./inc/footer_01.php"); ?>
 		</div>
 	
-		<script>
-			$(document).ready(function() {
-				setUpAddNewMemberForm();
-			});
-		</script>
 	</body>
 </html>
 

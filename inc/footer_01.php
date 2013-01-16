@@ -1,4 +1,4 @@
 <hr>
 <footer>
-	<p>&copy; <?php echo $companyName; ?> 2013</p>
+	<p>&copy; <?php echo $footerCompanyName; ?> 2013</p>
 </footer>

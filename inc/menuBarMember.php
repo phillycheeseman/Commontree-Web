@@ -1,7 +1,7 @@
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" href="#"><?php echo $companyName; ?></a>
+			<a class="brand" href="#"><?php echo $titleBarCompanyName; ?></a>
 			<ul class="nav">
 				<li id="scheduleMenuItem" class="">
 					<a href="./schedule.php"><i class="icon-calendar"></i> Schedule</a>
